@@ -1,0 +1,1 @@
+- Sensor dry/wet value readings
