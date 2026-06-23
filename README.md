@@ -69,7 +69,7 @@ self-watering-plant/
         |
         | (Optional) WiFi → [MQTT Broker / Cloud Dashboard]
 ```
-
+![Wiring Diagram](docs/esp32_wiring_diagram.png)
 ---
 
 ## 🏗️ Part 1: Physical / Hardware
@@ -78,9 +78,9 @@ Everything needed to assemble the circuit and physical setup.
 
 ### To-Do
 
-- [ ] **Identify switching component** — decide between a relay module or MOSFET transistor for pump control (relay is simpler; MOSFET is faster/quieter)
-- [ ] **Choose a power source** — USB power bank, wall adapter, or battery pack capable of sustaining 3–5V at ~250mA for the pump
-- [ ] **Build wiring diagram** — document all connections: sensor VCC/GND/AOUT → ESP32, ESP32 GPIO → relay/transistor → pump, power rails
+- [x] **Identify switching component** — 5V 2-Channel Relay Module
+- [x] **Choose a power source** — 5V USB wall adapter (≥1A) — powers ESP32 via USB; relay/pump tapped from 5V rail. Sufficient for 1–2 pump configuration.
+- [x] **Build wiring diagram** 
 - [ ] **Set up the reservoir** — select a container, position the pump inside, and route tubing to the plant
 - [ ] **Mount/position the moisture sensor** — insert sensor prongs into soil at root depth; keep the circuit board (top portion) above soil/water level to avoid damage
 - [ ] **Verify sensor operating voltage** — sensor runs 3.3–5.5V; confirm which ESP32 pin is used for VCC (3.3V rail recommended for ESP32 compatibility)
