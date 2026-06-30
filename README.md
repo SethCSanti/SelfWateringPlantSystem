@@ -97,7 +97,7 @@ All logic running on the ESP32. Language: **C++** (Arduino framework).
 ### To-Do
 
 #### Setup & Configuration
-- [ ] **Set up development environment** — install Arduino IDE or PlatformIO, add ESP32 board support package
+- [x] **Set up development environment** — install Arduino IDE or PlatformIO, add ESP32 board support package
 - [ ] **Define pin constants in `config.h`** — moisture sensor ADC pin, pump control GPIO pin, threshold values
 - [ ] **Confirm ADC configuration for ESP32** — the ESP32 ADC requires 11dB attenuation to handle the sensor's full 3.3V output range (see DIYables sensor note)
 
