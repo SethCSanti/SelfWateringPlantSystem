@@ -11,4 +11,5 @@ add_executable(SelfWateringPlantSystem
         src/moisture_sensor.cpp
         src/moisture_sensor.h
         src/pump_control.cpp
-        src/pump_control.h)
+        src/pump_control.h
+        src/config.h)
