@@ -1,10 +1,10 @@
-# 🌱 Self-Watering Plant System
+# Self-Watering Plant System
 
 An embedded automated irrigation system using an **ESP32** and capacitive soil moisture sensing to control a water pump via real-time threshold-based feedback. Built in C++ (Arduino/ESP32 framework), with an optional IoT monitoring upgrade via WiFi/MQTT.
 
 ---
 
-## 🎯 Project Goal
+## Project Goal
 
 Build a fully autonomous plant watering system that:
 - Reads soil moisture levels via an analog capacitive sensor
@@ -14,7 +14,7 @@ Build a fully autonomous plant watering system that:
 
 ---
 
-## 🔩 Hardware Components
+## Hardware Components
 
 | Component | Part | Specs |
 |---|---|---|
@@ -30,7 +30,7 @@ Build a fully autonomous plant watering system that:
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 self-watering-plant/
@@ -50,7 +50,7 @@ self-watering-plant/
 
 ---
 
-## ⚙️ System Architecture
+## System Architecture
 
 ```
 [Soil Moisture Sensor]
@@ -72,7 +72,7 @@ self-watering-plant/
 ![Wiring Diagram](docs/esp32_wiring_diagram.png)
 ---
 
-## 🏗️ Part 1: Physical / Hardware
+## Part 1: Physical / Hardware
 
 Everything needed to assemble the circuit and physical setup.
 
@@ -81,7 +81,7 @@ Everything needed to assemble the circuit and physical setup.
 - [x] **Identify switching component** — 5V 2-Channel Relay Module
 - [x] **Choose a power source** — 5V USB wall adapter (≥1A) — powers ESP32 via USB; relay/pump tapped from 5V rail. Sufficient for 1–2 pump configuration.
 - [x] **Build wiring diagram** 
-- [ ] **Set up the reservoir** — select a container, position the pump inside, and route tubing to the plant
+- [x] **Set up the reservoir** — select a container, position the pump inside, and route tubing to the plant
 - [ ] **Mount/position the moisture sensor** — insert sensor prongs into soil at root depth; keep the circuit board (top portion) above soil/water level to avoid damage
 - [ ] **Verify sensor operating voltage** — sensor runs 3.3–5.5V; confirm which ESP32 pin is used for VCC (3.3V rail recommended for ESP32 compatibility)
 - [ ] **Test pump manually** — connect pump directly to a power source to confirm it works before integrating with ESP32
@@ -90,7 +90,7 @@ Everything needed to assemble the circuit and physical setup.
 
 ---
 
-## 💻 Part 2: Firmware / Code (C++)
+## Part 2: Firmware / Code (C++)
 
 All logic running on the ESP32. Language: **C++** (Arduino framework).
 
@@ -98,34 +98,34 @@ All logic running on the ESP32. Language: **C++** (Arduino framework).
 
 #### Setup & Configuration
 - [x] **Set up development environment** — install Arduino IDE or PlatformIO, add ESP32 board support package
-- [ ] **Define pin constants in `config.h`** — moisture sensor ADC pin, pump control GPIO pin, threshold values
-- [ ] **Confirm ADC configuration for ESP32** — the ESP32 ADC requires 11dB attenuation to handle the sensor's full 3.3V output range (see DIYables sensor note)
+- [x] **Define pin constants in `config.h`** — moisture sensor ADC pin, pump control GPIO pin, threshold values
+- [x] **Confirm ADC configuration for ESP32** — the ESP32 ADC requires 11dB attenuation to handle the sensor's full 3.3V output range (see DIYables sensor note)
 
 #### Sensor Module (`moisture_sensor.cpp/.h`)
-- [ ] **Read raw ADC value** — use `analogRead()` on the sensor's AOUT pin
-- [ ] **Calibrate the sensor** — record ADC values in dry air and fully saturated soil; map raw value to a 0–100% moisture percentage
-- [ ] **Implement averaging** — take multiple ADC samples per reading and average them to reduce noise
-- [ ] **Document calibration values** in `docs/calibration_notes.md`
+- [x] **Read raw ADC value** — use `analogRead()` on the sensor's AOUT pin
+- [x] **Calibrate the sensor** — record ADC values in dry air and fully saturated soil; map raw value to a 0–100% moisture percentage
+- [x] **Implement averaging** — take multiple ADC samples per reading and average them to reduce noise
+- [x] **Document calibration values** in `docs/calibration_notes.md`
 
 #### Pump Control Module (`pump_control.cpp/.h`)
-- [ ] **Implement `pumpOn()` / `pumpOff()` functions** — write HIGH/LOW to the GPIO pin controlling the relay/transistor
-- [ ] **Add a minimum run duration** — run the pump for a fixed duration (e.g., 3–5 seconds) per trigger rather than continuously
-- [ ] **Add a cooldown period** — prevent the pump from retriggering immediately after watering (debounce / delay loop)
+- [x] **Implement `pumpOn()` / `pumpOff()` functions** — write HIGH/LOW to the GPIO pin controlling the relay/transistor
+- [x] **Add a minimum run duration** — run the pump for a fixed duration (e.g., 3–5 seconds) per trigger rather than continuously
+- [x] **Add a cooldown period** — prevent the pump from retriggering immediately after watering (debounce / delay loop)
 
 #### Main Control Loop (`main.cpp`)
-- [ ] **Implement the feedback control loop** — read moisture → compare to threshold → trigger pump if dry → wait → repeat
-- [ ] **Set and tune the moisture threshold** — define a `DRY_THRESHOLD` value in `config.h`; adjust based on plant species and sensor calibration
-- [ ] **Add serial logging** — print moisture readings and pump state to Serial Monitor for debugging
-- [ ] **Handle edge cases** — sensor disconnected, pump stuck on, reservoir empty (detect via run-time limits)
+- [x] **Implement the feedback control loop** — read moisture → compare to threshold → trigger pump if dry → wait → repeat
+- [x] **Set and tune the moisture threshold** — define a `DRY_THRESHOLD` value in `config.h`; adjust based on plant species and sensor calibration
+- [x] **Add serial logging** — print moisture readings and pump state to Serial Monitor for debugging
+- [x] **Handle edge cases** — sensor disconnected, pump stuck on, reservoir empty (detect via run-time limits)
 
 #### Testing
-- [ ] **Unit test sensor reads** — verify ADC outputs sensible values across dry/wet conditions
-- [ ] **Test pump trigger logic** — confirm pump activates only below threshold and shuts off correctly
-- [ ] **End-to-end test** — run full system in a real pot and observe one complete dry → water → recover cycle
+- [x] **Unit test sensor reads** — verify ADC outputs sensible values across dry/wet conditions
+- [x] **Test pump trigger logic** — confirm pump activates only below threshold and shuts off correctly
+- [x] **End-to-end test** — run full system in a real pot and observe one complete dry → water → recover cycle
 
 ---
 
-## 🌐 Part 3: IoT Upgrade (Optional)
+## Part 3: IoT Upgrade (Optional)
 
 Extend the system with WiFi reporting using the ESP32's built-in wireless capability.
 
@@ -141,7 +141,7 @@ Extend the system with WiFi reporting using the ESP32's built-in wireless capabi
 
 ---
 
-## 📋 Concepts Demonstrated
+## Concepts Demonstrated
 
 - Analog sensor reading via ADC
 - GPIO output control (sensor-actuator loop)
@@ -151,7 +151,7 @@ Extend the system with WiFi reporting using the ESP32's built-in wireless capabi
 
 ---
 
-## 📚 Resources
+## Resources
 
 - [ESP32 Arduino Core Docs](https://docs.espressif.com/projects/arduino-esp32/en/latest/)
 - [DIYables Soil Moisture Sensor Tutorial](https://www.amazon.com/dp/B0D2K9YP1K) — search "DIYables Soil Moisture Sensor" for official tutorials
@@ -160,7 +160,7 @@ Extend the system with WiFi reporting using the ESP32's built-in wireless capabi
 
 ---
 
-## 📝 Notes
+## Notes
 
 - Do **not** bury the circuit board portion of the moisture sensor in soil or water — only the prongs go in
 - Do **not** use pure/distilled water for testing the sensor; it won't conduct electricity and will give inaccurate readings
